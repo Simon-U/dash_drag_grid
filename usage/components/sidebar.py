@@ -42,6 +42,7 @@ drawer_toolbox = dmc.Drawer(
             title="",
             linkedId="test",
             items=[],
+            id="toolbox_id"
         ),
         style={"height": "400px", "width": "200px"},
     ),
