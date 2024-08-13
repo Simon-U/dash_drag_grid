@@ -1,5 +1,5 @@
 import dash
-from dash import Dash, callback, html, Input, Output, page_container
+from dash import Dash, callback, html, Input, Output, page_container, dcc
 import dash_drag_grid
 import dash_mantine_components as dmc
 
@@ -148,6 +148,7 @@ app.layout = dmc.MantineProvider(
     withGlobalClasses=True,
     children=dmc.AppShell(
         [
+            dcc.Location(id='url'),
             dmc.NotificationProvider(
                 containerWidth="25%",
                 autoClose=5000,

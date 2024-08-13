@@ -1,6 +1,7 @@
+from gc import callbacks
 import dash_drag_grid
 from dash_iconify import DashIconify
-from dash import html, clientside_callback, Input, Output
+from dash import html, clientside_callback, Input, Output, callback
 import dash_mantine_components as dmc
 
 toolBoxItems = [
@@ -29,12 +30,18 @@ toolBoxItems = [
     ),
 ]
 
+toolBoxItems2 = [
+    dash_drag_grid.ToolboxItem(
+        id="test1", inToolbox=False, children=[dmc.Text("test 1")]
+    )
+]
+
 drawer_toolbox = dmc.Drawer(
     dmc.Box(
         dash_drag_grid.ToolBox2(
             title="",
             linkedId="test",
-            items=toolBoxItems,
+            items=[],
         ),
         style={"height": "400px", "width": "200px"},
     ),
@@ -75,6 +82,15 @@ clientside_callback(
     prevent_initial_call=True,
 )
 
+@callback(
+    Output('toolbox_id', "items"),
+    Input('url', 'pathname'),
+)
+def update_toolbox_items(pathname):
+    if pathname == '/':
+        return toolBoxItems
+    return toolBoxItems2
+
 
 def make_sidebar():
 
@@ -86,3 +102,4 @@ def make_sidebar():
     ]
 
     return dmc.Stack(content, justify="center", align="center")
+
