@@ -643,6 +643,13 @@
     "displayName": "ToolBox",
     "methods": [],
     "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
       "linkedId": {
         "type": {
           "name": "string"
@@ -687,6 +694,20 @@
         "description": ""
       },
       "breakpoints": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": ""
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": ""
+      },
+      "style": {
         "type": {
           "name": "object"
         },

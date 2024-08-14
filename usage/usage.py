@@ -122,6 +122,43 @@ toolBox = [
     ),
 ]
 
+toolBox2 = [
+    dash_drag_grid.DashboardItemResponsive(
+        children=[
+            html.Div("Test 1"),
+            dmc.Space(h=5),
+            dmc.Text(
+                "This is a longer example lorem ipsum text to fill the content of the dif more"
+            ),
+        ],
+        id="test1",
+        h=5,
+        w=5,
+        x=0,
+        y=0,
+        inToolbox=False,
+        defaultName="Test Component 1",
+        isRemoveable=True,
+    ),
+    dash_drag_grid.DashboardItemResponsive(
+        children=[
+            html.Div("Test 2"),
+            dmc.Space(h=5),
+            dmc.Text(
+                "This is a longer example lorem ipsum text to fill the content of the dif more"
+            ),
+        ],
+        id="test2",
+        h=5,
+        w=5,
+        x=0,
+        y=0,
+        inToolbox=False,
+        defaultName="Default name for Test 2",
+        isRemoveable=True,
+    ),
+   
+]
 
 dash.register_page(
     "home",
@@ -140,7 +177,19 @@ dash.register_page(
         style={"backgroundColor": "grey", "height": "100vh", "width": "100vw"},
     ),
 )
-dash.register_page("analytics", layout=html.Div("Analytics"))
+dash.register_page("analytics",     layout=dmc.Container(
+        [
+            dash_drag_grid.ToolBoxGrid2(
+                toolBox2,
+                id="test_2",
+                style={"height": "100%", "width": "100%"},
+                enableToolbox=False,
+                deleteOnRemove=False,
+            ),
+        ],
+        fluid=True,
+        style={"backgroundColor": "grey", "height": "100vh", "width": "100vw"},
+    ),)
 header_height = 70
 app.layout = dmc.MantineProvider(
     # inherit=True,

@@ -33,7 +33,10 @@ toolBoxItems = [
 toolBoxItems2 = [
     dash_drag_grid.ToolboxItem(
         id="test1", inToolbox=False, children=[dmc.Text("test 1")]
-    )
+    ),
+    dash_drag_grid.ToolboxItem(
+        id="test2", inToolbox=False, children=[dmc.Text("test 2")]
+    ),
 ]
 
 drawer_toolbox = dmc.Drawer(
@@ -44,7 +47,7 @@ drawer_toolbox = dmc.Drawer(
             items=[],
             id="toolbox_id"
         ),
-        style={"height": "400px", "width": "200px"},
+        style={"height": "400px", "width": "200px", "background-color": 'red'},
     ),
     title="Toolbox",
     id="toolbox_drawer",
@@ -53,6 +56,7 @@ drawer_toolbox = dmc.Drawer(
     position="right",
     size=500,
     trapFocus=False,
+    keepMounted=True
 )
 
 
@@ -85,12 +89,13 @@ clientside_callback(
 
 @callback(
     Output('toolbox_id', "items"),
+    Output('toolbox_id', "linkedId"),
     Input('url', 'pathname'),
 )
 def update_toolbox_items(pathname):
     if pathname == '/':
-        return toolBoxItems
-    return toolBoxItems2
+        return toolBoxItems, "test_2"
+    return toolBoxItems2, "test"
 
 
 def make_sidebar():

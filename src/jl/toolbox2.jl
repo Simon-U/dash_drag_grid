@@ -8,14 +8,16 @@ export toolbox2
 A ToolBox2 component.
 
 Keyword arguments:
+- `id` (String; optional)
 - `breakpoints` (Dict; optional)
 - `items` (Array; required)
 - `layouts` (Dict; optional)
 - `linkedId` (String; optional)
+- `style` (Dict; optional)
 - `title` (String; optional)
 """
 function toolbox2(; kwargs...)
-        available_props = Symbol[:breakpoints, :items, :layouts, :linkedId, :title]
+        available_props = Symbol[:id, :breakpoints, :items, :layouts, :linkedId, :style, :title]
         wild_props = Symbol[]
         return Component("toolbox2", "ToolBox2", "dash_drag_grid", available_props, wild_props; kwargs...)
 end

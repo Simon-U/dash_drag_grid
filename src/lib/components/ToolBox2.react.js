@@ -66,6 +66,8 @@ function ToolBox(props) {
         }
     }, 'json');
 
+    let style = props.style;
+
     useEffect(() => {
 
         let normalizedChildren = normalizeToolboxItems(props.items);
@@ -195,6 +197,7 @@ function ToolBox(props) {
                     containerPadding={[0, 0]}
                     compactType={'horizontal'}
                     onBreakpointChange={handleBreakpointChange}
+                    style={style}
                 >
                     {itms.map(renderToolboxItem)}
                 </ResponsiveReactGridLayout>)}
@@ -213,7 +216,8 @@ ToolBox.propTypes = {
     component: PropTypes.func,
     layouts: PropTypes.object,
     breakpoints: PropTypes.object,
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
+    style: PropTypes.object,
 };
 
 ToolBox.defaultProps = {

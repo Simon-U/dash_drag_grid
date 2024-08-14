@@ -10,11 +10,13 @@
 }
 
 \usage{
-toolBox2(breakpoints=NULL, component=NULL, items=NULL, layouts=NULL,
-linkedId=NULL, title=NULL)
+toolBox2(id=NULL, breakpoints=NULL, component=NULL, items=NULL,
+layouts=NULL, linkedId=NULL, style=NULL, title=NULL)
 }
 
 \arguments{
+\item{id}{Character. }
+
 \item{breakpoints}{Named list. }
 
 \item{component}{}
@@ -24,6 +26,8 @@ linkedId=NULL, title=NULL)
 \item{layouts}{Named list. }
 
 \item{linkedId}{Character. }
+
+\item{style}{Named list. }
 
 \item{title}{Character. }
 }
