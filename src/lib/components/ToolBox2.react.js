@@ -138,24 +138,26 @@ function ToolBox(props) {
         return renderDashComponent(child.element);
     }
 
+    const handleItemClick = (id) => () => {
+        // Use the existing sentMessage function to remove item from the toolbox
+        sentMessage({ type: 'remove', id });
+    };
+
     const renderToolboxItem = (child, index) => {
         try {
             const key = child.id || `toolbox-item-${index}`;
             const _data_grid = { x: 0, y: 0, w: 1, h: 2 };
             const content = renderContent(child);
-            const handleItemClick = () => {
-                addItemToLayout(key);
-            };
 
             return (
                 <div
                     key={key}
                     className="item toolbox"
                     data-grid={_data_grid}
-                    draggable="true"
+                    
                     unselectable="on"
                     onDragStart={handleDragStart(key)}
-                    onClick={handleItemClick}
+                    onClick={handleItemClick(key)}
                 >
                     <div className="toolbox-item-content">
                         {props.component(content)}

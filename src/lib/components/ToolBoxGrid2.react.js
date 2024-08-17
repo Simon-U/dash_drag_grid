@@ -151,7 +151,32 @@ const ToolBoxGrid2 = (props) => {
 
     }, [gridLayouts]);
 
-    let sendMessage = useComms('toolbox', (msg) => { }, 'json');
+    let sendMessage = useComms('toolbox', (msg) => {
+        if (msg.type === 'remove') {
+            const id = msg.id;
+    
+            // Find the item in the toolboxLayouts
+            setToolboxLayouts(prev => {
+                let newState = { ...prev };
+                const itemToAdd = newState[breakpoint].find(item => item.i === id);
+    
+                if (itemToAdd) {
+                    // Remove the item from the toolbox layout
+                    newState[breakpoint] = newState[breakpoint].filter(item => item.i !== id);
+                    
+                    // Update the state
+                    setGridLayouts(gridLayouts => {
+                        let newGridState = { ...gridLayouts };
+                        itemToAdd.inToolbox = false;
+                        newGridState[breakpoint].push(itemToAdd);
+                        return newGridState;
+                    });
+                }
+    
+                return newState;
+            });
+        }
+    }, 'json');
 
     const handleResizeItemStart = (layout, oldItem, newItem, placeholder, e, element) => {
         setActiveWindows(prev => {
