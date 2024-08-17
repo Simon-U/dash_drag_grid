@@ -143,6 +143,9 @@ function ToolBox(props) {
             const key = child.id || `toolbox-item-${index}`;
             const _data_grid = { x: 0, y: 0, w: 1, h: 2 };
             const content = renderContent(child);
+            const handleItemClick = () => {
+                addItemToLayout(key);
+            };
 
             return (
                 <div
@@ -152,6 +155,7 @@ function ToolBox(props) {
                     draggable="true"
                     unselectable="on"
                     onDragStart={handleDragStart(key)}
+                    onClick={handleItemClick}
                 >
                     <div className="toolbox-item-content">
                         {props.component(content)}
