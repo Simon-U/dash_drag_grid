@@ -154,14 +154,12 @@ function ToolBox(props) {
                     key={key}
                     className="item toolbox"
                     data-grid={_data_grid}
-                    
                     unselectable="on"
                     onDragStart={handleDragStart(key)}
                     onClick={handleItemClick(key)}
                 >
-                    <div className="toolbox-item-content">
+
                         {props.component(content)}
-                    </div>
                 </div>
             );
         } catch (e) {
@@ -201,7 +199,7 @@ function ToolBox(props) {
                     isResizable={false}
                     isDraggable={false}
                     containerPadding={[0, 0]}
-                    compactType={'horizontal'}
+                    compactType={'vertical'}
                     onBreakpointChange={handleBreakpointChange}
                     style={style}
                 >

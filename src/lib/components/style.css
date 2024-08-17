@@ -101,11 +101,10 @@
     align-items: center;
 }
 
-
-.toolbox-container {
-    background-color: chartreuse;
+.react-grid-item.item.toolbox.cssTransforms.react-resizable-hide.react-resizable {
+    width: 200px !important;
+    align-content: center !important;
+    justify-content: center !important;
 }
 
-.toolbox-bg {
-    background-color: blue;
-}
+

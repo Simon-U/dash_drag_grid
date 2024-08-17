@@ -23,10 +23,12 @@ toolBoxItems = [
     dash_drag_grid.ToolboxItem(
         id="test6",
         inToolbox=False,
-        children=[
-            DashIconify(icon="ion:logo-github", width=30),
-            html.Div("icon test6"),
-        ],
+        children=dmc.Group(
+            [
+                DashIconify(icon="ion:logo-github", width=30),
+                html.Div("icon test6"),
+            ]
+        ),
     ),
 ]
 
@@ -40,15 +42,7 @@ toolBoxItems2 = [
 ]
 
 drawer_toolbox = dmc.Drawer(
-    dmc.Box(
-        dash_drag_grid.ToolBox2(
-            title="",
-            linkedId="test",
-            items=[],
-            id="toolbox_id"
-        ),
-        style={"height": "400px", "width": "200px", "background-color": 'red'},
-    ),
+    dash_drag_grid.ToolBox2(title="", linkedId="test", items=[], id="toolbox_id"),
     title="Toolbox",
     id="toolbox_drawer",
     padding="md",
@@ -56,7 +50,7 @@ drawer_toolbox = dmc.Drawer(
     position="right",
     size=500,
     trapFocus=False,
-    keepMounted=True
+    keepMounted=True,
 )
 
 
@@ -87,13 +81,14 @@ clientside_callback(
     prevent_initial_call=True,
 )
 
+
 @callback(
-    Output('toolbox_id', "items"),
-    Output('toolbox_id', "linkedId"),
-    Input('url', 'pathname'),
+    Output("toolbox_id", "items"),
+    Output("toolbox_id", "linkedId"),
+    Input("url", "pathname"),
 )
 def update_toolbox_items(pathname):
-    if pathname == '/':
+    if pathname == "/":
         return toolBoxItems, "test_2"
     return toolBoxItems2, "test"
 
@@ -108,4 +103,3 @@ def make_sidebar():
     ]
 
     return dmc.Stack(content, justify="center", align="center")
-
